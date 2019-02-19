@@ -1,0 +1,11 @@
+{
+  "name": "websk/php-captcha",
+  "require": {
+    "websk/php-slim": "1.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  }
+}
