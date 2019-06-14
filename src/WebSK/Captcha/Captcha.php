@@ -19,8 +19,8 @@ class Captcha
      */
     public static function check()
     {
-        if ((array_key_exists(self::CAPTCHA_FIELD_NAME, $_REQUEST))
-            && ($_REQUEST[self::CAPTCHA_FIELD_NAME] == $_COOKIE[self::CAPTCHA_COOKIE_NAME])
+        if ((array_key_exists(self::CAPTCHA_FIELD_NAME, $_POST))
+            && ($_POST[self::CAPTCHA_FIELD_NAME] == $_COOKIE[self::CAPTCHA_COOKIE_NAME])
         ) {
             return true;
         }
