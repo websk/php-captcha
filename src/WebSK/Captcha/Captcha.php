@@ -11,6 +11,7 @@ use WebSK\Utils\Messages;
 class Captcha
 {
     const CAPTCHA_FIELD_NAME = 'captcha';
+    const CAPTCHA_COOKIE_NAME = 'kvaYtnctkHqzTxR2b3Mi';
 
     /**
      * Проверка введенного кода
@@ -19,7 +20,7 @@ class Captcha
     public static function check()
     {
         if ((array_key_exists(self::CAPTCHA_FIELD_NAME, $_REQUEST))
-            && ($_REQUEST[self::CAPTCHA_FIELD_NAME] == $_COOKIE[self::CAPTCHA_FIELD_NAME])
+            && ($_REQUEST[self::CAPTCHA_FIELD_NAME] == $_COOKIE[self::CAPTCHA_COOKIE_NAME])
         ) {
             return true;
         }
@@ -150,7 +151,7 @@ class Captcha
 
         $captcha = mb_strtolower(implode('', $code));
 
-        setcookie(self::CAPTCHA_FIELD_NAME, $captcha, 0, '/');
+        setcookie(self::CAPTCHA_COOKIE_NAME, $captcha, 0, '/');
 
         imagepng($src);
         imagedestroy($src);
