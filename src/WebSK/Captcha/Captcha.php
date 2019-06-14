@@ -19,7 +19,7 @@ class Captcha
     public static function check()
     {
         if ((array_key_exists(self::CAPTCHA_FIELD_NAME, $_REQUEST))
-            && ($_REQUEST[self::CAPTCHA_FIELD_NAME] == $_SESSION[self::CAPTCHA_FIELD_NAME])
+            && ($_REQUEST[self::CAPTCHA_FIELD_NAME] == $_COOKIE[self::CAPTCHA_FIELD_NAME])
         ) {
             return true;
         }
@@ -54,11 +54,7 @@ class Captcha
         $path_fonts = __DIR__ . '/fonts/'; // Путь к шрифтам
         $numeric = true; // Только цифры
 
-        if (session_status() !== PHP_SESSION_ACTIVE) {
-            session_start();
-        }
-
-        $_SESSION[self::CAPTCHA_FIELD_NAME] = '';
+        $_COOKIE[self::CAPTCHA_FIELD_NAME] = '';
 
         $number_of_signs = intval(($width * $height) / 150);
 
@@ -152,7 +148,9 @@ class Captcha
             imagettftext($src, $size, $angle, $x, $y, $color, $font, $letter);
         }
 
-        $_SESSION['captcha'] = mb_strtolower(implode('', $code));
+        $captcha = mb_strtolower(implode('', $code));
+
+        setcookie(self::CAPTCHA_FIELD_NAME, $captcha, 0, '/');
 
         imagepng($src);
         imagedestroy($src);

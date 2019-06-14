@@ -1,6 +1,8 @@
 {
   "name": "websk/php-captcha",
   "require": {
+    "ext-mbstring": "*",
+    "ext-gd": "*",
     "websk/php-slim": "1.0.*",
     "websk/php-utils": "1.0.*"
   },
