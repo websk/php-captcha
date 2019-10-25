@@ -2,6 +2,7 @@
 
 namespace WebSK\Captcha;
 
+use WebSK\Slim\Request;
 use WebSK\Utils\Messages;
 
 /**
@@ -19,9 +20,14 @@ class Captcha
      */
     public static function check()
     {
-        if ((array_key_exists(self::CAPTCHA_FIELD_NAME, $_POST))
-            && ($_POST[self::CAPTCHA_FIELD_NAME] == $_COOKIE[self::CAPTCHA_COOKIE_NAME])
-        ) {
+        /**
+         * @var $request Request
+         */
+        $request = Request::self();
+
+        $captcha_from_request = $request->getParam(self::CAPTCHA_FIELD_NAME);
+
+        if ($captcha_from_request && ($captcha_from_request == $_COOKIE[self::CAPTCHA_COOKIE_NAME])) {
             return true;
         }
 
