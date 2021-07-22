@@ -3,18 +3,21 @@
 namespace WebSK\Captcha\RequestHandlers;
 
 use Psr\Http\Message\ResponseInterface;
-use Slim\Http\Request;
-use Slim\Http\Response;
+use Psr\Http\Message\ServerRequestInterface;
 use WebSK\Captcha\Captcha;
 
+/**
+ * Class RenderCaptchaHandler
+ * @package WebSK\Captcha\RequestHandlers
+ */
 class RenderCaptchaHandler
 {
     /**
-     * @param Request $request
-     * @param Response $response
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
      * @return ResponseInterface
      */
-    public function __invoke(Request $request, Response $response)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
         ob_start();
         Captcha::render();

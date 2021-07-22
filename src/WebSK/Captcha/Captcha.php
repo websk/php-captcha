@@ -2,6 +2,7 @@
 
 namespace WebSK\Captcha;
 
+use Psr\Http\Message\ServerRequestInterface;
 use WebSK\Slim\Request;
 use WebSK\Utils\Messages;
 
@@ -18,10 +19,10 @@ class Captcha
      * Проверка введенного кода
      * @return bool
      */
-    public static function check()
+    public static function check(): bool
     {
         /**
-         * @var $request Request
+         * @var $request ServerRequestInterface
          */
         $request = Request::self();
 
@@ -38,7 +39,7 @@ class Captcha
      * Проверка с генерацией сообщения в случае ошибки
      * @return bool
      */
-    public static function checkWithMessage()
+    public static function checkWithMessage(): bool
     {
         if (self::check()) {
             return true;

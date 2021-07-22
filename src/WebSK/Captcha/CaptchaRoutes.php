@@ -7,6 +7,10 @@ use WebSK\Captcha\RequestHandlers\CheckCaptchaAjaxHandler;
 use WebSK\Captcha\RequestHandlers\RenderCaptchaHandler;
 use WebSK\Utils\HTTP;
 
+/**
+ * Class CaptchaRoutes
+ * @package WebSK\Captcha
+ */
 class CaptchaRoutes
 {
     const ROUTE_NAME_CAPTCHA_GENERATE = 'captcha:generate';
