@@ -4,7 +4,7 @@
     "php": "^7.4",
     "ext-mbstring": "*",
     "ext-gd": "*",
-    "websk/php-slim": "1.0.*",
+    "websk/php-slim": "1.1.*",
     "websk/php-utils": "1.0.*"
   },
   "autoload": {

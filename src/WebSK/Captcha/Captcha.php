@@ -60,7 +60,6 @@ class Captcha
         $num_symbols = 5; // Количество символов, которые нужно набрать
         $font_size = 14;
         $path_fonts = __DIR__ . '/fonts/'; // Путь к шрифтам
-        $numeric = true; // Только цифры
 
         $_COOKIE[self::CAPTCHA_FIELD_NAME] = '';
 
@@ -69,42 +68,6 @@ class Captcha
         $code = [];
 
         $letters = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
-        if ($numeric === false) {
-            $letters = [
-                'a',
-                'b',
-                'c',
-                'd',
-                'e',
-                'f',
-                'g',
-                'h',
-                'j',
-                'k',
-                'm',
-                'n',
-                'p',
-                'q',
-                'r',
-                's',
-                't',
-                'u',
-                'v',
-                'w',
-                'x',
-                'y',
-                'z',
-                '2',
-                '3',
-                '4',
-                '5',
-                '6',
-                '7',
-                '8',
-                '9'
-            ];
-        }
 
         $figures_arr = array('50', '70', '90', '110', '130', '150', '170', '190', '210');
 
@@ -162,7 +125,5 @@ class Captcha
 
         imagepng($src);
         imagedestroy($src);
-
-        return;
     }
 }
