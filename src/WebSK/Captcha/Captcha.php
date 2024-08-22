@@ -2,7 +2,6 @@
 
 namespace WebSK\Captcha;
 
-use Psr\Http\Message\ServerRequestInterface;
 use WebSK\Slim\Request;
 use WebSK\Utils\Messages;
 
@@ -12,8 +11,8 @@ use WebSK\Utils\Messages;
  */
 class Captcha
 {
-    const CAPTCHA_FIELD_NAME = 'captcha';
-    const CAPTCHA_COOKIE_NAME = 'kvaYtnctkHqzTxR2b3Mi';
+    const string CAPTCHA_FIELD_NAME = 'captcha';
+    const string CAPTCHA_COOKIE_NAME = 'kvaYtnctkHqzTxR2b3Mi';
 
     /**
      * Проверка введенного кода
@@ -22,7 +21,7 @@ class Captcha
     public static function check(): bool
     {
         /**
-         * @var $request ServerRequestInterface
+         * @var $request Request
          */
         $request = Request::self();
 

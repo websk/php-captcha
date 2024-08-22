@@ -13,8 +13,8 @@ use WebSK\Utils\HTTP;
  */
 class CaptchaRoutes
 {
-    const ROUTE_NAME_CAPTCHA_GENERATE = 'captcha:generate';
-    const ROUTE_NAME_CAPTCHA_CHECK_AJAX = 'captcha:check_ajax';
+    const string ROUTE_NAME_CAPTCHA_GENERATE = 'captcha:generate';
+    const string ROUTE_NAME_CAPTCHA_CHECK_AJAX = 'captcha:check_ajax';
 
     /**
      * @param App $app
