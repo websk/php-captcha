@@ -19,7 +19,7 @@ class CaptchaRoutes
     /**
      * @param App $app
      */
-    public static function register(App $app)
+    public static function register(App $app): void
     {
         $app->group('/captcha', function (App $app) {
             $app->map(
