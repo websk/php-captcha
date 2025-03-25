@@ -6,7 +6,7 @@
     "ext-gd": "*",
     "slim/slim": "4.14.*",
     "websk/php-slim": "2.2.*",
-    "websk/php-utils": "2.0.*"
+    "websk/php-utils": "2.1.*"
   },
   "autoload": {
     "psr-4": {
