@@ -5,7 +5,7 @@
     "ext-mbstring": "*",
     "ext-gd": "*",
     "slim/slim": "4.14.*",
-    "websk/php-slim": "2.2.*",
+    "websk/php-slim": "2.3.*",
     "websk/php-utils": "2.1.*"
   },
   "autoload": {
