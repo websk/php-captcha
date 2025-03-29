@@ -2,11 +2,11 @@
 
 namespace WebSK\Captcha;
 
+use Fig\Http\Message\RequestMethodInterface;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface;
 use WebSK\Captcha\RequestHandlers\CheckCaptchaAjaxHandler;
 use WebSK\Captcha\RequestHandlers\RenderCaptchaHandler;
-use WebSK\Utils\HTTP;
 
 /**
  * Class CaptchaRoutes
@@ -24,13 +24,13 @@ class CaptchaRoutes
     {
         $app->group('/captcha', function (RouteCollectorProxyInterface $route_collector_proxy) {
             $route_collector_proxy->map(
-                [HTTP::METHOD_GET],
+                [RequestMethodInterface::METHOD_GET],
                 '/generate',
                 RenderCaptchaHandler::class
             )->setName(self::ROUTE_NAME_CAPTCHA_GENERATE);
 
             $route_collector_proxy->map(
-                [HTTP::METHOD_GET],
+                [RequestMethodInterface::METHOD_GET],
                 '/check_ajax',
                 CheckCaptchaAjaxHandler::class
             )->setName(self::ROUTE_NAME_CAPTCHA_CHECK_AJAX);
