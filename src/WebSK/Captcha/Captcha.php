@@ -2,6 +2,7 @@
 
 namespace WebSK\Captcha;
 
+use Psr\Http\Message\RequestInterface;
 use WebSK\Slim\Request;
 use WebSK\Utils\Messages;
 
@@ -21,7 +22,7 @@ class Captcha
     public static function check(): bool
     {
         /**
-         * @var $request Request
+         * @var $request RequestInterface
          */
         $request = Request::self();
 
@@ -52,7 +53,7 @@ class Captcha
     /**
      * Генерация картинки
      */
-    public static function render()
+    public static function render(): void
     {
         $width = 140; // Ширина изображения
         $height = 40; // Высота изображения
@@ -88,10 +89,19 @@ class Captcha
             $size = rand($font_size - 1, $font_size + 1);
             $angle = rand(0, 60);
             if ($h == rand(1, 2)) {
-                $angle = rand(360, 300);
+                $angle = rand(300, 360);
             }
 
-            imagettftext($src, $size, $angle, rand($width * 0.1, $width - 20), rand($height * 0.2, $height - 10), $color, $font, $letter);
+            imagettftext(
+                $src,
+                $size,
+                $angle,
+                intval(static::random_float($width * 0.1, $width - 20)),
+                intval(static::random_float($height * 0.2, $height - 10)),
+                $color,
+                $font,
+                $letter
+            );
         }
 
         for ($i = 0; $i < $num_symbols; $i++) {
@@ -106,16 +116,16 @@ class Captcha
             );
             $font = $fonts_arr[rand(0, sizeof($fonts_arr) - 1)];
             $letter = mb_strtolower($letters[rand(0, sizeof($letters) - 1)]);
-            $size = rand($font_size * 2.1 - 1, $font_size * 2.1 + 1);
-            $x = (empty($x)) ? $width * 0.08 : $x + ($width * 0.8) / $num_symbols + rand(0, $width * 0.01);
-            $y = ($h == rand(1, 2)) ? (($height * 1.15 * 3) / 4) + rand(0, $height * 0.02) : (($height * 1.15 * 3) / 4) - rand(0, $height * 0.02);
+            $size = static::random_float($font_size * 2.1 - 1, $font_size * 2.1 + 1);
+            $x = (empty($x)) ? $width * 0.08 : $x + ($width * 0.8) / $num_symbols + static::random_float(0, $width * 0.01);
+            $y = ($h == static::random_float(1, 2)) ? (($height * 1.15 * 3) / 4) + static::random_float(0, $height * 0.02) : (($height * 1.15 * 3) / 4) - static::random_float(0, $height * 0.02);
             $angle = rand(5, 20);
 
             $code[] = $letter;
             if ($h == rand(1, 2)) {
-                $angle = rand(355, 340);
+                $angle = rand(340, 355);
             }
-            imagettftext($src, $size, $angle, $x, $y, $color, $font, $letter);
+            imagettftext($src, $size, $angle, (int)$x, (int)$y, $color, $font, $letter);
         }
 
         $captcha = mb_strtolower(implode('', $code));
@@ -124,5 +134,10 @@ class Captcha
 
         imagepng($src);
         imagedestroy($src);
+    }
+
+    public static function random_float(float $min, float $max): float
+    {
+        return $min + (mt_rand() / mt_getrandmax()) * ($max - $min);
     }
 }
