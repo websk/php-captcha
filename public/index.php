@@ -6,13 +6,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\Factory\AppFactory;
 use WebSK\Captcha\CaptchaRoutes;
 
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 $app = AppFactory::create();
 
-$container = $app->getContainer();
-
-$app->get('/', function (ServerRequestInterface $request, ResponseInterface $response, $args) {
+$app->get('/', function (ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
     return $response->withHeader('Location', '/captcha/generate')
         ->withStatus(StatusCodeInterface::STATUS_FOUND);
 });

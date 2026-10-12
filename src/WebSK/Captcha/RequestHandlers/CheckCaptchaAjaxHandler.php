@@ -19,12 +19,9 @@ class CheckCaptchaAjaxHandler
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        $content = 'false';
-        if (Captcha::check()) {
-            $content = 'true';
-        }
+        $content = Captcha::check($request) ? 'true' : 'false';
 
-        $response = $response->withHeader('Content-type', 'application/json');
+        $response = $response->withHeader('Content-Type', 'application/json');
         $response->getBody()->write($content);
 
         return $response;

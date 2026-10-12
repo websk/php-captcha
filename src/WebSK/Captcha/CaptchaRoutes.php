@@ -17,9 +17,7 @@ class CaptchaRoutes
     const string ROUTE_NAME_CAPTCHA_GENERATE = 'captcha:generate';
     const string ROUTE_NAME_CAPTCHA_CHECK_AJAX = 'captcha:check_ajax';
 
-    /**
-     * @param App $app
-     */
+    /** @param App<*> $app */
     public static function register(App $app): void
     {
         $app->group('/captcha', function (RouteCollectorProxyInterface $route_collector_proxy) {
